@@ -1,26 +1,21 @@
-- hosts: all
-  become: true
+---
+- name: APT Update with Retry
+  hosts: all
+  become: true  # Use sudo for privilege escalation
+
   tasks:
-    # Introduce a delay before the APT update task
-    - name: Introduce Delay before APT Update
+    - name: Check APT Lock File
+      command: "fuser /var/lib/apt/lists/lock"
+      register: apt_lock_status
+      ignore_errors: true
+
+    - name: Wait for APT Lock to be Released
       pause:
         seconds: 10  # Adjust the delay as needed
+      until: "apt_lock_status.rc != 0"
+      retries: 6
+      delay: 10
 
-    # Ensure APT Cache Directory Permissions
-    - name: Ensure APT Cache Directory Permissions
-      file:
-        path: /var/lib/apt/lists/
-        owner: root
-        group: root
-        mode: '0755'
-
-    # Debug information for troubleshooting
-    - name: Debug Information
-      debug:
-        msg: "APT Lock Debug - {{ ansible_env | to_nice_json }}"
-
-    # Upgrade packages
-    - name: Upgrade apt packages
+    - name: APT Update
       apt:
-        upgrade: yes
         update_cache: yes
