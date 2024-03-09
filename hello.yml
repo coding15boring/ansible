@@ -1,0 +1,9 @@
+---
+- name: Simple Ansible Task
+  hosts: your_target_host
+  become: true  # Use sudo for privilege escalation
+
+  tasks:
+    - name: Print Hello World
+      debug:
+        msg: "Hello, World!"
