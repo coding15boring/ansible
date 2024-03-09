@@ -1,6 +1,6 @@
 ---
-- name: Simple Ansible Task
-  hosts: your_target_host
+- name: Hello 
+  hosts: All
   become: true  # Use sudo for privilege escalation
 
   tasks:
