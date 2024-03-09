@@ -1,6 +1,6 @@
 ---
 - name: Hello 
-  hosts: All
+  hosts: all
   become: true  # Use sudo for privilege escalation
 
   tasks:
