@@ -3,11 +3,6 @@
   become: true
   become_user: root
   tasks:
-    - name: packages | ensure apt list dir exists
-      file:
-        path: /var/lib/apt/lists/
-        state: directory
-        mode: 0755
 
     - name: upgrade apt packages
       apt:
