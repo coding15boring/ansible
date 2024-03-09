@@ -1,0 +1,26 @@
+- hosts: all
+  become: true
+  tasks:
+    # Introduce a delay before the APT update task
+    - name: Introduce Delay before APT Update
+      pause:
+        seconds: 10  # Adjust the delay as needed
+
+    # Ensure APT Cache Directory Permissions
+    - name: Ensure APT Cache Directory Permissions
+      file:
+        path: /var/lib/apt/lists/
+        owner: root
+        group: root
+        mode: '0755'
+
+    # Debug information for troubleshooting
+    - name: Debug Information
+      debug:
+        msg: "APT Lock Debug - {{ ansible_env | to_nice_json }}"
+
+    # Upgrade packages
+    - name: Upgrade apt packages
+      apt:
+        upgrade: yes
+        update_cache: yes
