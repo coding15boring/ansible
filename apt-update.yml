@@ -4,7 +4,6 @@
   tasks:
     # Upgrade packages
     - name: upgrade apt packages
-      become: true
       apt:
         upgrade: yes
         update_cache: yes
