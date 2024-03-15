@@ -1,0 +1,8 @@
+---
+- name: Display Currently Logged-In User
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Display current user
+      debug:
+        msg: "The currently logged-in user is {{ ansible_user }}"
