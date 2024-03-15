@@ -2,7 +2,6 @@
   tasks:
     - name: upgrade apt packages
       become: yes
-      become_method: su
       become_user: root
       apt:
         upgrade: yes
