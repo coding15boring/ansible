@@ -1,10 +1,13 @@
 ---
-- name: Display Currently Logged-In User
+- name: Example Playbook to Become Root
   hosts: all
-  gather_facts: yes
-  become: yes
-  become_user: root
+  become: true  # This enables privilege escalation, i.e., executing commands as root
+
   tasks:
-    - name: Display current user
+    - name: Execute command to become root
+      shell: su -
+      register: root_user_result
+
+    - name: Debug root user
       debug:
-        msg: "The currently logged-in user is {{ ansible_env.SUDO_USER | default(ansible_user) }}"
+        msg: "Current user is {{ root_user_result.stdout }}"
