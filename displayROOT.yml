@@ -1,13 +1,13 @@
 ---
-- name: Example Playbook to Become Root
+- name: Example Playbook to Execute Commands as Root
   hosts: all
   become: true  # This enables privilege escalation, i.e., executing commands as root
 
   tasks:
-    - name: Execute command to become root
-      shell: su -
+    - name: Debug root user
+      command: whoami
       register: root_user_result
 
-    - name: Debug root user
+    - name: Display current user
       debug:
         msg: "Current user is {{ root_user_result.stdout }}"
