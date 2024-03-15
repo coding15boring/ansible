@@ -5,5 +5,5 @@
       become_method: su
       become_user: root
       apt:
-      upgrade: yes
-      update_cache: yes
+        upgrade: yes
+        update_cache: yes
