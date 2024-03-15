@@ -2,6 +2,8 @@
   tasks:
     - name: upgrade apt packages
       become: true
+      become_method: su
+      become_user: root
       apt:
         upgrade: yes
         update_cache: yes
