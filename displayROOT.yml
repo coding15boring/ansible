@@ -7,4 +7,4 @@
   tasks:
     - name: Display current user
       debug:
-        msg: "The currently logged-in user is {{ ansible_user }}"
+        msg: "The currently logged-in user is {{ ansible_env.SUDO_USER | default(ansible_user) }}"
