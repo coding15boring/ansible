@@ -1,0 +1,13 @@
+- name: Ping Google
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Ping Google
+      uri:
+        url: "https://www.google.com"
+        method: GET
+      register: result
+
+    - debug:
+        msg: "Google is {{ 'reachable' if result.status == 200 else 'unreachable' }}"
