@@ -6,3 +6,9 @@
       apt:
         upgrade: yes
         update_cache: yes
+        
+- hosts: localhost
+  vars:
+    ansible_host_key_checking: false
+  roles:
+    - including_vars
