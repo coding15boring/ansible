@@ -1,13 +1,12 @@
+---
 - name: Ping Google
   hosts: localhost
   gather_facts: no
 
   tasks:
     - name: Ping Google
-      uri:
-        url: "https://www.google.com"
-        method: GET
-      register: result
+      ping:
 
-    - debug:
-        msg: "Google is {{ 'reachable' if result.status == 200 else 'unreachable' }}"
+    - name: Display Ping Result
+      debug:
+        var: ansible_ping
