@@ -1,7 +1,6 @@
 - hosts: all
   tasks:
     - name: upgrade apt packages
-      become: yes
       remote_user: root
       
       apt:
