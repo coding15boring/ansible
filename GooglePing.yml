@@ -1,12 +1,9 @@
----
-- name: Ping Google
-  hosts: localhost
-  gather_facts: no
+- hosts: all
+  gather_facts: False
+  connection: local
 
   tasks:
-    - name: Ping Google
-      ping:
 
-    - name: Display Ping Result
-      debug:
-        var: ansible_ping
+    - name: ping
+      shell: ping -c 1 -w 2 8.8.8.8
+      ignore_errors: true
